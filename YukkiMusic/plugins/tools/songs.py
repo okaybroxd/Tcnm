@@ -14,7 +14,7 @@ import re
 import yt_dlp
 from pykeyboard import InlineKeyboard
 from pyrogram import filters
-from pyrogram import ChatAction
+from pyrogram.enums import ChatAction
 from pyrogram.types import (InlineKeyboardButton,
                             InlineKeyboardMarkup, InputMediaAudio,
                             InputMediaVideo, Message)
