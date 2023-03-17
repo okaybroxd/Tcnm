@@ -48,6 +48,12 @@ OWNER_ID = list(
     map(int, getenv("OWNER_ID", "").split())
 )  # Input type must be interger
 
+# Get it from http://dashboard.heroku.com/account
+HEROKU_API_KEY = getenv("HEROKU_API_KEY")
+
+# You have to Enter the app name which you gave to identify your  Music Bot in Heroku.
+HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
+
 # For customized or modified Repository
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
