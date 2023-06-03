@@ -69,7 +69,9 @@ async def all_chats(client, message: Message, _):
     j = 0
     for count, chat_id in enumerate(await blacklisted_chats(), 1):
         try:
-            title = (await app.get_chat(chat_id)).title
+            title = (
+                await app.get_chat(chat_id)
+            ).title
         except Exception:
             title = "Private"
         j = 1

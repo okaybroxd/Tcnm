@@ -114,12 +114,14 @@ def AdminActual(mystic):
             )
         if message.from_user.id not in SUDOERS:
             try:
-                member = await app.get_chat_member(
-                    message.chat.id, message.from_user.id
-                )
+                member = (
+                    await app.get_chat_member(
+                        message.chat.id, message.from_user.id
+                    )
+                ).privileges
             except:
                 return
-            if not member.privileges.can_manage_video_chats:
+            if not member.can_manage_video_chats:
                 return await message.reply(_["general_5"])
         return await mystic(client, message, _)
 
@@ -146,15 +148,17 @@ def ActualAdminCB(mystic):
         )
         if not is_non_admin:
             try:
-                a = await app.get_chat_member(
-                    CallbackQuery.message.chat.id,
-                    CallbackQuery.from_user.id,
-                )
+                a = (
+                    await app.get_chat_member(
+                        CallbackQuery.message.chat.id,
+                        CallbackQuery.from_user.id,
+                    )
+                ).privileges
             except:
                 return await CallbackQuery.answer(
                     _["general_5"], show_alert=True
                 )
-            if not a.privileges.can_manage_video_chats:
+            if not a.can_manage_video_chats:
                 if CallbackQuery.from_user.id not in SUDOERS:
                     token = await int_to_alpha(
                         CallbackQuery.from_user.id
